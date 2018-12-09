@@ -10,22 +10,29 @@
         crossorigin="anonymous">
     <!-- my css -->
     <link rel="stylesheet" type="text/css" href="./assets/css/style.css">
-    <title>Document</title>
+    <title>GetGif</title>
 </head>
 
 <body>
-    <div id="buttons"></div>
-    <form id="topic-form">
-        <label for="topic-input">Add a topic to see in GIF</label>
-        <input type="text" id="topic-input">
-        <br>
-
-        <!-- Button triggers new movie to be added -->
-        <input id="add-topic" type="submit" value="add topic">
-    </form>
+    <div class="jumbotron">
+        <h1 class="display-4" id="title">Get Gif!</h1>
+        <div class ="row" id="buttons">
+        </div>
+        <form id="topic-form">
+                <label for="topic-input">Add a topic to see in GIF</label>
+                <input type="text" id="topic-input">
+                <br>
+        
+                <!-- Button triggers new movie to be added -->
+                <input class="btn btn-primary" id="add-topic" type="submit" value="add topic">
+            </form>
+        <hr class="my-4">
+        <a class="btn btn-primary btn-lg" href="#" role="button" id="loadMore">Load 10 More</a>
+        <a class="btn btn-primary btn-lg" href="#" role="button" id="reset">Reset</a>
+    </div>
 
     <!-- gif appears here -->
-    <div class = "row" id="gifs">
+    <div class="row" id="gifs">
 
     </div> <!-- end of gif -->
     <!-- jquery -->
