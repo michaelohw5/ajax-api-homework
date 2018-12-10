@@ -50,6 +50,7 @@ $(document.body).on("click", ".gif-btn", function (event) {
     getGif(clicked);
 });
 
+//calls gifs using ajax
 var getGif = function (gif) {
     $("#gifs").empty();
     var apikey = "dc6zaTOxFJmzC";
@@ -75,11 +76,13 @@ var getGif = function (gif) {
     });
 }
 
+//load 10 more gifs
 $("#loadMore").on("click", function () {
     limit = limit + 10;
     getGif(clicked);
 });
 
+//gifs onclick to make still/animate
 $(document.body).on("click", ".loadedGif", function (event) {
     console.log("gif clicked");
     console.log(this);
@@ -97,18 +100,11 @@ $(document.body).on("click", ".loadedGif", function (event) {
     }
 });
 
-
+//reset button onclick
 $("#reset").on("click", function () {
     limit = 10;
     clicked = "";
     $("#gifs").empty();
 })
 
-
 renderButtons();
-
-
-var test = function () {
-    console.log("test");
-}
-
