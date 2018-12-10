@@ -50,7 +50,7 @@ $(document.body).on("click", ".gif-btn", function (event) {
     getGif(clicked);
 });
 
-var getGif = function(gif) {
+var getGif = function (gif) {
     $("#gifs").empty();
     var apikey = "dc6zaTOxFJmzC";
     var queryURL = "https://api.giphy.com/v1/gifs/search?q=" + gif + "&api_key=" + apikey + "&limit=" + limit;
@@ -64,19 +64,41 @@ var getGif = function(gif) {
             var gifDiv = $("<div class='item col-md-3'>");
             var p = $("<p>").text("Rating: " + results[i].rating);
             var image = $("<img>");
-            image.attr("src", results[i].images.fixed_height.url);
+            image.attr("src", response.data[i].images.fixed_height_still.url);
+            image.attr("data-still", response.data[i].images.fixed_height_still.url);
+            image.attr("data-animate", response.data[i].images.fixed_height.url);
+            image.attr("data-state", "still");
+            image.attr("class", "loadedGif");
             gifDiv.append(p, image);
             $("#gifs").prepend(gifDiv);
         }
     });
 }
 
-$("#loadMore").on("click", function() {
+$("#loadMore").on("click", function () {
     limit = limit + 10;
     getGif(clicked);
 });
 
-$("#reset").on("click", function() {
+$(document.body).on("click", ".loadedGif", function (event) {
+    console.log("gif clicked");
+    console.log(this);
+    var state = $(this).attr("data-state");
+    var dataStill = $(this).attr("data-still");
+    var dataAnimate = $(this).attr("data-animate");
+    console.log(state);
+    if (state === "still") {
+        $(this).attr("src", dataAnimate)
+        $(this).attr("data-state", "animate")
+    }
+    else if (state === "animate") {
+        $(this).attr("src", dataStill)
+        $(this).attr("data-state", "still")
+    }
+});
+
+
+$("#reset").on("click", function () {
     limit = 10;
     clicked = "";
     $("#gifs").empty();
